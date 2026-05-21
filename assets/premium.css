@@ -1,0 +1,332 @@
+/* ============================================================
+   LineRudy Hairstyle — PREMIUM LAYER
+   Override stylesheet caricato dopo il bundle principale.
+   Obiettivo: alzare la percezione di lusso, leggibilità hero,
+   accento gold, tipografia più strutturata.
+   ============================================================ */
+
+/* --- Tokens premium (palette gold + nere/crema esistenti) --- */
+:root {
+  --lr-gold:        #c9a961;   /* champagne luminoso, accenti principali */
+  --lr-gold-deep:   #a8852f;   /* gold caldo profondo, bordi/hover */
+  --lr-gold-soft:   #e6d4a3;   /* gold tenue, sfondi/halo */
+  --lr-ink:         #1a1f17;   /* verde nerissimo, testo premium */
+  --lr-cream:       #ece8dd;   /* crema esistente */
+  --lr-cream-warm:  #f4efe4;   /* crema chiara esistente */
+  --lr-line:        rgba(168, 133, 47, 0.28);  /* hairline gold sottile */
+}
+
+/* ============================================================
+   1) TIPOGRAFIA — pesi più marcati, lettering più scolpito
+   ============================================================ */
+
+/* Bump globale dei pesi del body: il corpo testo passa da 400 a 500
+   per dare struttura senza diventare bold. Il sito usava Neue Haas
+   400/500/600/700 — saliamo di uno stop sui pesi leggeri. */
+body,
+.font-normal {
+  font-weight: 500 !important;
+  letter-spacing: -0.005em;
+}
+
+.font-medium {
+  font-weight: 600 !important;
+}
+
+/* Headings: ancora più ariosi e premium */
+h1, h2, h3 {
+  font-weight: 600 !important;
+  letter-spacing: -0.045em !important;
+}
+
+/* Hero H1 specifico — più peso, più "scolpito" */
+.hero h1,
+section:first-of-type h1,
+h1[class*="lg:text-[5.8rem]"],
+h1[class*="xl:text-[6.85rem]"] {
+  font-weight: 600 !important;
+  letter-spacing: -0.058em !important;
+  text-wrap: balance;
+}
+
+/* Smoothing su tutto (display tipografico premium) */
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection color: gold, dettaglio premium */
+::selection {
+  background: var(--lr-gold);
+  color: var(--lr-ink);
+}
+
+/* ============================================================
+   2) HERO — leggibilità: testo crema brillante + ombra cinematica
+   ============================================================ */
+
+/* L'hero ha video di sfondo. Il testo era verde medio (#336443)
+   e verde chiarissimo (#85AB8B) → entrambi affogavano nel video.
+   Strategia: testo crema chiaro con halo nero soft → cinematico,
+   leggibile su qualsiasi frame del video. */
+
+/* Hero H1 (primo h1 del documento, su video) */
+section h1[class*="text-[#336443]"] {
+  color: var(--lr-cream-warm) !important;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.35),
+    0 8px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* La porzione di H1 evidenziata che era verdino illeggibile
+   ("Deve farti riconoscere") → diventa GOLD champagne */
+section h1[class*="text-[#336443]"] .text-\[\#85AB8B\],
+section h1 span.text-\[\#85AB8B\] {
+  color: var(--lr-gold) !important;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(201, 169, 97, 0.35);
+  font-style: italic;
+  font-weight: 600 !important;
+}
+
+/* Sottotitolo hero (paragrafo subito sotto l'H1, era #4b5b47) */
+section h1[class*="text-[#336443]"] + p,
+section p[class*="text-[#4b5b47]"]:first-of-type {
+  color: rgba(244, 239, 228, 0.92) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-weight: 500 !important;
+}
+
+/* Chip "Atelier capelli · Roma" sulla hero — bordo gold sottile */
+section .border-white\/60.bg-white\/55 {
+  border-color: rgba(201, 169, 97, 0.55) !important;
+  background: rgba(26, 31, 23, 0.4) !important;
+  color: var(--lr-gold-soft) !important;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+section .border-white\/60.bg-white\/55 .text-\[\#3d5638\],
+section .border-white\/60.bg-white\/55 svg {
+  color: var(--lr-gold-soft) !important;
+}
+
+/* Rinforzo overlay video in basso per stacco cinematico del testo */
+section video + div + div,
+section video ~ div[class*="linear-gradient(180deg,transparent_45"] {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(26, 31, 23, 0.05) 35%,
+    rgba(26, 31, 23, 0.35) 75%,
+    rgba(26, 31, 23, 0.62) 100%
+  ) !important;
+  opacity: 1 !important;
+}
+
+/* ============================================================
+   3) KICKER / EYEBROW gold — il dettaglio che dà l'aria "premium"
+   ============================================================ */
+
+/* Tutti i piccoli kicker uppercase "Il metodo", "Il salone", etc.
+   erano in verdino tenue #85AB8B → ora gold deep. Questo è IL
+   dettaglio che alza istantaneamente la percezione di lusso. */
+.text-\[\#85AB8B\] {
+  color: var(--lr-gold-deep) !important;
+  letter-spacing: 0.28em !important;
+}
+
+/* Eccezione: dentro la hero (su video) usa gold più chiaro per
+   contrasto, già gestito sopra. */
+
+/* ============================================================
+   4) ACCENTI gold sui pulsanti / CTA — più desiderabilità
+   ============================================================ */
+
+/* I bottoni con sfondo verde scuro (#1f2a1d / #2d4228) prendono
+   un sottile bordo gold + glow sul hover. */
+button[class*="bg-[#1f2a1d]"],
+a[class*="bg-[#1f2a1d]"],
+button[class*="bg-[#2d4228]"],
+a[class*="bg-[#2d4228]"],
+button[class*="bg-[#2a3827]"],
+a[class*="bg-[#2a3827]"] {
+  position: relative;
+  border: 1px solid rgba(201, 169, 97, 0.4) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 10px 30px -10px rgba(0, 0, 0, 0.45);
+  transition: all 0.4s cubic-bezier(.2,.8,.2,1) !important;
+}
+
+button[class*="bg-[#1f2a1d]"]:hover,
+a[class*="bg-[#1f2a1d]"]:hover,
+button[class*="bg-[#2d4228]"]:hover,
+a[class*="bg-[#2d4228]"]:hover {
+  border-color: var(--lr-gold) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 14px 40px -10px rgba(201, 169, 97, 0.35),
+    0 0 0 1px rgba(201, 169, 97, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Link / underline accent gold sui link inline */
+a:not([class*="bg-"]):not([class*="rounded"]):hover {
+  color: var(--lr-gold-deep);
+}
+
+/* ============================================================
+   5) HAIRLINE gold — divider sottili tra sezioni
+   ============================================================ */
+
+/* Bordi divider deboli (border-[#1f2a1d]/10 etc) → fanno
+   da hairline ma sono troppo neutri. Aggiungiamo un accento
+   gold molto sottile sui separatori principali. */
+hr,
+.border-t[class*="border-[#1f2a1d]"],
+.border-b[class*="border-[#1f2a1d]"] {
+  border-color: var(--lr-line) !important;
+}
+
+/* ============================================================
+   6) MICROINTERAZIONI — hover su immagini gallery
+   ============================================================ */
+
+/* Le immagini della gallery prendono un sottile zoom + cornice
+   gold all'hover, che è il "wow" su prodotti premium. */
+img {
+  transition: transform 0.7s cubic-bezier(.2,.8,.2,1),
+              filter 0.7s ease;
+}
+
+.group:hover img,
+a:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.04) saturate(1.08);
+}
+
+/* ============================================================
+   7) SCROLL — smooth e barre eleganti
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar discreta */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--lr-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--lr-gold) 0%, var(--lr-gold-deep) 100%);
+  border-radius: 10px;
+  border: 2px solid var(--lr-cream);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lr-gold-deep);
+}
+
+/* ============================================================
+   8) FOOTER / HEADER — leggera promozione gold
+   ============================================================ */
+
+/* Il logo / brand name più scolpito */
+header [class*="font-semibold"],
+header [class*="font-bold"],
+nav [class*="font-semibold"] {
+  letter-spacing: -0.02em;
+}
+
+/* Numero di telefono / prenotazione: dettaglio gold */
+a[href^="tel:"],
+a[href^="https://wa.me"] {
+  font-weight: 600 !important;
+}
+
+a[href^="tel:"]:hover,
+a[href^="https://wa.me"]:hover {
+  color: var(--lr-gold-deep) !important;
+}
+
+/* ============================================================
+   9) RISPETTO PER REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   10) FIX MOBILE — hero text non deve essere troppo piccolo
+   ============================================================ */
+
+@media (max-width: 640px) {
+  section h1[class*="text-[#336443]"] {
+    text-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.5),
+      0 6px 24px rgba(0, 0, 0, 0.55);
+  }
+}
+
+
+/* ===== Flow & Glow luxury burgundy refinement ===== */
+:root{
+  --flow-burgundy:#7f454b;
+  --flow-burgundy-deep:#5f3038;
+  --flow-burgundy-soft:#9a666b;
+  --flow-cream:#f3eee4;
+  --flow-ink:#1f221d;
+}
+
+/* La scritta hero che prima era oro/verde passa a burgundy desaturato */
+.text-\[\#336443\]{
+  color:var(--flow-burgundy-deep)!important;
+}
+.text-\[\#85AB8B\]{
+  color:var(--flow-burgundy)!important;
+}
+.text-\[\#3d5638\],
+.text-\[\#4b5b47\],
+.text-\[\#2d3a2a\]{
+  color:#4a403b!important;
+}
+
+/* CTA più luxury e meno template */
+.bg-\[\#1f2a1d\],
+.bg-\[\#3d5638\]{
+  background:linear-gradient(135deg,var(--flow-burgundy),var(--flow-burgundy-deep))!important;
+}
+.hover\:bg-\[\#2a3827\]:hover,
+.hover\:bg-\[\#2d4228\]:hover{
+  background:var(--flow-burgundy-deep)!important;
+}
+
+/* Hero overlay: più cinematica, meno piatta */
+section:first-of-type > .absolute.inset-0.bg-\[linear-gradient\(180deg\,rgba\(236\,232\,221\,0\.05\)_0\%\,rgba\(236\,232\,221\,0\.12\)_48\%\,rgba\(236\,232\,221\,0\.48\)_100\%\)\]{
+  background:linear-gradient(180deg,rgba(12,8,7,.18) 0%,rgba(12,8,7,.06) 42%,rgba(12,8,7,.36) 100%)!important;
+}
+
+/* Bottom-left block più editoriale */
+.absolute.bottom-6.left-4.right-4.z-10.max-w-sm{
+  max-width:22rem!important;
+}
+.absolute.bottom-6.left-4.right-4.z-10.max-w-sm p{
+  letter-spacing:.01em;
+}
+
+/* Gallery più fashion/luxury */
+.gallery-img,
+img[alt*="Flow"],
+img[alt*="Prodotti"],
+img[alt*="Postazioni"]{
+  filter:saturate(.88) contrast(1.04) brightness(.98);
+}
