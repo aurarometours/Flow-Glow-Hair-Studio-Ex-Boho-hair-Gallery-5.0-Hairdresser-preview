@@ -278,97 +278,55 @@ a[href^="https://wa.me"]:hover {
 }
 
 
-/* ============================================================
-   FLOW & GLOW — FIX DEFINITIVO HERO
-   Richiesta: nella hero tutto ciò che NON è burgundy deve essere bianco.
-   Tocchiamo solo hero e solo dimensione headline + accento.
-   ============================================================ */
-
+/* ===== Flow & Glow luxury burgundy refinement ===== */
 :root{
-  --flow-hero-white:#f7f2e8;
-  --flow-hero-white-soft:rgba(247,242,232,.88);
-  --flow-burgundy:#6f4a52;
-  --flow-burgundy-deep:#593942;
+  --flow-burgundy:#7f454b;
+  --flow-burgundy-deep:#5f3038;
+  --flow-burgundy-soft:#9a666b;
+  --flow-cream:#f3eee4;
+  --flow-ink:#1f221d;
 }
 
-/* HERO headline: bianca, più piccola e contenuta */
-section:first-of-type h1,
-section:first-of-type h1[class*="text-[#336443]"],
-section:first-of-type h1[class*="lg:text-[5.8rem]"],
-section:first-of-type h1[class*="xl:text-[6.85rem]"]{
-  color:var(--flow-hero-white)!important;
-  font-size:clamp(2rem,4vw,4rem)!important;
-  line-height:.92!important;
-  max-width:930px!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-  letter-spacing:-.055em!important;
-  text-shadow:
-    0 2px 8px rgba(0,0,0,.42),
-    0 18px 54px rgba(0,0,0,.45)!important;
+/* La scritta hero che prima era oro/verde passa a burgundy desaturato */
+.text-\[\#336443\]{
+  color:var(--flow-burgundy-deep)!important;
 }
-
-/* HERO accent: solo questa parte è burgundy desaturato, non oro */
-section:first-of-type h1 span,
-section:first-of-type h1 .text-\[\#85AB8B\],
-section:first-of-type h1 span.text-\[\#85AB8B\]{
-  color:var(--flow-burgundy)!important;
-  font-style:normal!important;
-  font-weight:600!important;
-  text-shadow:
-    0 2px 8px rgba(0,0,0,.35),
-    0 0 24px rgba(111,74,82,.30)!important;
-}
-
-/* HERO subtitle: bianco morbido, non verde/nero */
-section:first-of-type h1 + p,
-section:first-of-type p[class*="text-[#4b5b47]"]{
-  color:var(--flow-hero-white-soft)!important;
-  text-shadow:0 2px 8px rgba(0,0,0,.42)!important;
-}
-
-/* HERO chip superiore: testo bianco, icona burgundy */
-section:first-of-type .border-white\/60.bg-white\/55{
-  color:var(--flow-hero-white)!important;
-  background:rgba(20,14,14,.26)!important;
-  border-color:rgba(247,242,232,.46)!important;
-}
-section:first-of-type .border-white\/60.bg-white\/55 svg{
+.text-\[\#85AB8B\]{
   color:var(--flow-burgundy)!important;
 }
-
-/* HERO bottom-left: bianco; icona/mini accento in burgundy */
-section:first-of-type .absolute.bottom-6.left-4.right-4.z-10.max-w-sm,
-section:first-of-type .absolute.bottom-6.left-4.right-4.z-10.max-w-sm p,
-section:first-of-type .absolute.bottom-6.left-4.right-4.z-10.max-w-sm a:not([class*="bg-"]),
-section:first-of-type .absolute.bottom-6.left-4.right-4.z-10.max-w-sm span{
-  color:var(--flow-hero-white-soft)!important;
-}
-section:first-of-type .absolute.bottom-6.left-4.right-4.z-10.max-w-sm svg{
-  color:var(--flow-burgundy)!important;
+.text-\[\#3d5638\],
+.text-\[\#4b5b47\],
+.text-\[\#2d3a2a\]{
+  color:#4a403b!important;
 }
 
-/* HERO CTA: burgundy, non oro/verde */
-section:first-of-type a[href^="tel:"][class*="rounded-full"]{
-  background:var(--flow-burgundy)!important;
-  color:#fff!important;
-  border-color:rgba(247,242,232,.24)!important;
+/* CTA più luxury e meno template */
+.bg-\[\#1f2a1d\],
+.bg-\[\#3d5638\]{
+  background:linear-gradient(135deg,var(--flow-burgundy),var(--flow-burgundy-deep))!important;
 }
-section:first-of-type a[href^="tel:"][class*="rounded-full"]:hover{
+.hover\:bg-\[\#2a3827\]:hover,
+.hover\:bg-\[\#2d4228\]:hover{
   background:var(--flow-burgundy-deep)!important;
 }
 
-/* HERO bottom-right: bianco */
-section:first-of-type .absolute.bottom-8.right-6,
-section:first-of-type .absolute.bottom-8.right-6 span{
-  color:var(--flow-hero-white-soft)!important;
+/* Hero overlay: più cinematica, meno piatta */
+section:first-of-type > .absolute.inset-0.bg-\[linear-gradient\(180deg\,rgba\(236\,232\,221\,0\.05\)_0\%\,rgba\(236\,232\,221\,0\.12\)_48\%\,rgba\(236\,232\,221\,0\.48\)_100\%\)\]{
+  background:linear-gradient(180deg,rgba(12,8,7,.18) 0%,rgba(12,8,7,.06) 42%,rgba(12,8,7,.36) 100%)!important;
 }
 
-/* Mobile: resta nello schermo */
-@media (max-width:640px){
-  section:first-of-type h1,
-  section:first-of-type h1[class*="text-[#336443]"]{
-    font-size:clamp(1.8rem,7vw,2.7rem)!important;
-    max-width:94vw!important;
-  }
+/* Bottom-left block più editoriale */
+.absolute.bottom-6.left-4.right-4.z-10.max-w-sm{
+  max-width:22rem!important;
+}
+.absolute.bottom-6.left-4.right-4.z-10.max-w-sm p{
+  letter-spacing:.01em;
+}
+
+/* Gallery più fashion/luxury */
+.gallery-img,
+img[alt*="Flow"],
+img[alt*="Prodotti"],
+img[alt*="Postazioni"]{
+  filter:saturate(.88) contrast(1.04) brightness(.98);
 }
